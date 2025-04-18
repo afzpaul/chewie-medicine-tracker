@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Chewie Medicine Tracker",
     "short_name": "ChewieTracker",
@@ -13,4 +14,21 @@
       }
     ]
   }
+=======
+{
+    "name": "Chewie Medicine Tracker",
+    "short_name": "ChewieTracker",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#fef6ff",
+    "theme_color": "#8652f5",
+    "icons": [
+      {
+        "src": "https://i.ibb.co/98zjZ7G/dog-avatar.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ]
+  }
+>>>>>>> 29491ddaba619918281625bc9bc90bc7ba2cccae
   
