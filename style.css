@@ -1,98 +1,67 @@
 :root {
   --primary: #8652f5;
-  --background: #f9f9ff;
-  --card-bg: #ffffff;
+  --accent: #f4f0ff;
+  --button: #ffe65a;
   --text: #333;
+  --radius: 18px;
+  --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 body {
   margin: 0;
+  padding: 0;
+  background: #f9f9ff;
   font-family: 'Segoe UI', sans-serif;
-  background: var(--background);
   color: var(--text);
 }
 
-.app {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: space-between;
-}
-
-.topbar {
+.homepage-container {
+  padding: 30px 20px;
   text-align: center;
-  padding: 20px;
-  background: #fff;
-  border-bottom: 1px solid #eee;
 }
 
-.card {
-  background: var(--card-bg);
-  margin: 15px;
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+.welcome-text {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.character-card {
+  background: var(--accent);
   padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
   transition: transform 0.2s ease;
 }
 
-.card:hover {
-  transform: translateY(-3px);
+.character-card:hover {
+  transform: translateY(-5px);
 }
 
-.card h2 {
-  margin-top: 0;
-  color: var(--primary);
+.character-face {
+  font-size: 3em;
+  margin-bottom: 10px;
 }
 
-button {
-  background: var(--primary);
-  color: white;
+.start-btn {
+  background: var(--button);
+  color: black;
   border: none;
-  border-radius: 12px;
-  padding: 12px;
-  font-size: 16px;
-  margin-top: 10px;
-  width: 100%;
+  border-radius: var(--radius);
+  padding: 15px 20px;
+  font-size: 1.1em;
   cursor: pointer;
-  transition: background 0.3s ease;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
 }
 
-button:hover {
-  background: #6d38c0;
-}
-
-input, select {
-  width: 100%;
-  margin: 8px 0;
-  padding: 12px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  box-sizing: border-box;
-}
-
-.bottom-nav {
-  display: flex;
-  justify-content: space-around;
-  background: #fff;
-  padding: 10px 0;
-  border-top: 1px solid #ddd;
-}
-
-.nav-btn {
-  flex: 1;
-  padding: 12px;
-  font-size: 14px;
-  color: var(--text);
-  background: none;
-  border: none;
-}
-
-.nav-btn.active {
-  color: var(--primary);
-  font-weight: bold;
-}
-
-.hidden {
-  display: none;
+.start-btn:hover {
+  background: #ffdc40;
 }

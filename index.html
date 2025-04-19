@@ -3,64 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>Chewie Medicine Tracker</title>
-  <link rel="manifest" href="manifest.json" />
+  <title>Chewie Medicine Tracker v1</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="app">
-    <!-- Header -->
-    <header class="topbar">
-      <h1>Welcome, Chewie! 🐾</h1>
-      <p>Track your medicine every day</p>
-    </header>
+  <div class="homepage-container">
+    <h1 id="greeting">Good Day!</h1>
+    <p class="welcome-text">Let’s take care of Chewie together 💊🐾</p>
 
-    <!-- Main Content -->
-    <main id="main-content">
-      <!-- Home Card -->
-      <section class="card home-card">
-        <h2>Track Medicine</h2>
-        <p>Add your medicine schedule here</p>
-        <button onclick="openForm()">Start Tracking</button>
-      </section>
+    <div class="character-card">
+      <div class="character-face">🐶</div>
+      <p>Hello! Ready to track?</p>
+    </div>
 
-      <!-- Form Card -->
-      <section class="card form-card hidden" id="form-section">
-        <form id="medicine-form">
-          <input type="text" id="med-name" placeholder="Medicine Name" required />
-          <input type="text" id="med-dosage" placeholder="Dosage (e.g. 5ml)" required />
-          <input type="number" id="med-frequency" placeholder="Times per Day" required />
-          <select id="med-timing">
-            <option value="morning">Morning</option>
-            <option value="night">Night</option>
-            <option value="both">Both</option>
-          </select>
-          <select id="meal-timing">
-            <option value="before">Before Meal</option>
-            <option value="after">After Meal</option>
-          </select>
-          <input type="number" id="med-duration" placeholder="Duration in Days" required />
-          <input type="date" id="med-start-date" required />
-          <button type="submit">Save</button>
-        </form>
-      </section>
-
-      <!-- Logs Section -->
-      <section class="log-section" id="log-container"></section>
-    </main>
-
-    <!-- Bottom Navigation -->
-    <nav class="bottom-nav">
-      <button onclick="switchTab('home')" class="nav-btn active">Home</button>
-      <button onclick="switchTab('log')" class="nav-btn">Tracker</button>
-    </nav>
+    <button class="start-btn" onclick="location.href='tracking.html'">Let’s Start</button>
   </div>
 
-  <script src="script.js"></script>
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js');
+    const greetingEl = document.getElementById("greeting");
+    const now = new Date().getHours();
+
+    if (now >= 5 && now < 12) {
+      greetingEl.textContent = "Good Morning, Chewie!";
+    } else if (now >= 12 && now < 18) {
+      greetingEl.textContent = "Good Afternoon, Chewie!";
+    } else {
+      greetingEl.textContent = "Good Night, Chewie!";
     }
   </script>
 </body>
