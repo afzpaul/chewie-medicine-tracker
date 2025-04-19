@@ -1,125 +1,56 @@
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #fef6ff;
-    color: #333;
-  }
-  
-  .app-container {
-    max-width: 480px;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  .header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .dog-pic {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-  
-  h1 {
-    color: #8652f5;
-    margin: 0;
-  }
-  
-  p {
-    margin: 5px 0 20px;
-    color: #777;
-  }
-  
-  .form-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    margin-bottom: 30px;
-  }
-  
-  .input-group {
-    display: flex;
-    align-items: center;
-    background: #f1edff;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    padding: 10px 14px;
-  }
-  
-  .input-group i {
-    color: #8652f5;
-    margin-right: 10px;
-  }
-  
-  .input-group input {
-    border: none;
-    background: transparent;
-    width: 100%;
-    font-size: 16px;
-    outline: none;
-  }
-  
-  .add-btn {
-    width: 100%;
-    background-color: #8652f5;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    padding: 14px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .add-btn:hover {
-    background-color: #6a3fc7;
-  }
-  
-  .log-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .log-list li {
-    background-color: #f3edff;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
-    padding: 15px;
-    border-radius: 14px;
-    position: relative;
-    font-size: 14px;
-  }
-  
-  .delete-btn {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    background: #ff4b5c;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 12px;
-  }
-  
-  .delete-btn:hover {
-    background: #e73b4c;
-  }
-  
-  .week-section h3 {
-    cursor: pointer;
-    background: #e2d4ff;
-    padding: 10px;
-    border-radius: 10px;
-    margin-top: 20px;
-  }
-  
-  .collapsible.closed + ul {
-    display: none;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fef6ff;
+  color: #333;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header, footer {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: #8652f5;
+}
+
+form input, form select, form button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+form button {
+  background-color: #8652f5;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #6e41cb;
+}
+
+.daily-log {
+  margin-top: 30px;
+}
+
+.log-entry {
+  background: #f3edff;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+}
