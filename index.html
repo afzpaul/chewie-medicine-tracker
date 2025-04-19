@@ -3,49 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#8652f5" />
-  <title>Chewie Medicine Tracker v2</title>
+  <meta name="theme-color" content="#ffffff" />
+  <title>Chewie Medicine Tracker</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Chewie Medicine Tracker</h1>
-      <p>Track and manage your pet's medication schedule</p>
+  <div class="app">
+    <!-- Header -->
+    <header class="topbar">
+      <h1>Welcome, Chewie! 🐾</h1>
+      <p>Track your medicine every day</p>
     </header>
 
-    <section>
-      <form id="medicine-form">
-        <input type="hidden" id="edit-index" />
-        <input type="text" id="med-name" placeholder="Medicine Name" required />
-        <input type="text" id="med-dosage" placeholder="Dosage (e.g. 5ml)" required />
-        <input type="number" id="med-frequency" placeholder="Times per Day" min="1" required />
-        <select id="med-timing">
-          <option value="morning">Morning</option>
-          <option value="night">Night</option>
-          <option value="both">Both</option>
-        </select>
-        <select id="meal-timing">
-          <option value="before">Before Meal</option>
-          <option value="after">After Meal</option>
-        </select>
-        <input type="number" id="med-duration" placeholder="Duration in Days" min="1" required />
-        <input type="date" id="med-start-date" required />
-        <button type="submit">Save Medicine</button>
-      </form>
-    </section>
+    <!-- Main Content -->
+    <main id="main-content">
+      <!-- Home Card -->
+      <section class="card home-card">
+        <h2>Track Medicine</h2>
+        <p>Add your medicine schedule here</p>
+        <button onclick="openForm()">Start Tracking</button>
+      </section>
 
-    <section class="daily-log">
-      <h2>Daily Summary</h2>
-      <div id="log-container"></div>
-    </section>
+      <!-- Form Card -->
+      <section class="card form-card hidden" id="form-section">
+        <form id="medicine-form">
+          <input type="text" id="med-name" placeholder="Medicine Name" required />
+          <input type="text" id="med-dosage" placeholder="Dosage (e.g. 5ml)" required />
+          <input type="number" id="med-frequency" placeholder="Times per Day" required />
+          <select id="med-timing">
+            <option value="morning">Morning</option>
+            <option value="night">Night</option>
+            <option value="both">Both</option>
+          </select>
+          <select id="meal-timing">
+            <option value="before">Before Meal</option>
+            <option value="after">After Meal</option>
+          </select>
+          <input type="number" id="med-duration" placeholder="Duration in Days" required />
+          <input type="date" id="med-start-date" required />
+          <button type="submit">Save</button>
+        </form>
+      </section>
 
-    <footer>
-      <p>Chewie Medicine Tracker v2.0.0</p>
-    </footer>
+      <!-- Logs Section -->
+      <section class="log-section" id="log-container"></section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <button onclick="switchTab('home')" class="nav-btn active">Home</button>
+      <button onclick="switchTab('log')" class="nav-btn">Tracker</button>
+    </nav>
   </div>
 
   <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
 </body>
 </html>

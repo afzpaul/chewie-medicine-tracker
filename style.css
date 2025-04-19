@@ -1,115 +1,98 @@
+:root {
+  --primary: #8652f5;
+  --background: #f9f9ff;
+  --card-bg: #ffffff;
+  --text: #333;
+}
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  padding: 0;
-  background: #f9f9f9;
-  color: #333;
-  transition: background 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--background);
+  color: var(--text);
 }
 
-.container {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
 }
 
-header, footer {
+.topbar {
   text-align: center;
-  margin-bottom: 20px;
+  padding: 20px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
 }
 
-h1 {
-  color: #8652f5;
-  margin-bottom: 5px;
-}
-
-form input,
-form select,
-form button {
-  width: 100%;
-  margin: 8px 0;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
-}
-
-form input:focus,
-form select:focus {
-  border-color: #8652f5;
-  outline: none;
-  background: #f3f0ff;
-}
-
-form button {
-  background: #8652f5;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-form button:hover {
-  background: #6e41cb;
-}
-
-.daily-log {
-  margin-top: 30px;
-}
-
-.daily-card {
-  background: white;
-  border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+.card {
+  background: var(--card-bg);
+  margin: 15px;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease;
 }
 
-.daily-card:hover {
+.card:hover {
   transform: translateY(-3px);
 }
 
-.daily-card h3 {
-  margin: 0 0 10px;
-  color: #8652f5;
+.card h2 {
+  margin-top: 0;
+  color: var(--primary);
 }
 
-.med-block {
-  border-top: 1px solid #eee;
-  padding-top: 10px;
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 16px;
   margin-top: 10px;
+  width: 100%;
+  cursor: pointer;
   transition: background 0.3s ease;
 }
 
-.med-block:hover {
-  background: #f8f6ff;
-  border-radius: 8px;
+button:hover {
+  background: #6d38c0;
 }
 
-.edit-btn {
-  background: #eee;
-  border: none;
-  padding: 6px 12px;
-  margin-top: 5px;
-  border-radius: 6px;
-  cursor: pointer;
+input, select {
+  width: 100%;
+  margin: 8px 0;
+  padding: 12px;
   font-size: 14px;
-  transition: all 0.2s ease;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-sizing: border-box;
 }
 
-.edit-btn:hover {
-  background: #8652f5;
-  color: white;
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
 }
 
-@media (max-width: 480px) {
-  form input,
-  form select,
-  form button {
-    font-size: 14px;
-    padding: 10px;
-  }
+.nav-btn {
+  flex: 1;
+  padding: 12px;
+  font-size: 14px;
+  color: var(--text);
+  background: none;
+  border: none;
+}
+
+.nav-btn.active {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
 }

@@ -1,85 +1,73 @@
 const form = document.getElementById("medicine-form");
 const logContainer = document.getElementById("log-container");
+const formSection = document.getElementById("form-section");
 
 let meds = JSON.parse(localStorage.getItem("chewie_meds")) || [];
 
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const med = {
     name: document.getElementById("med-name").value,
     dosage: document.getElementById("med-dosage").value,
-    frequency: parseInt(document.getElementById("med-frequency").value),
+    frequency: document.getElementById("med-frequency").value,
     timing: document.getElementById("med-timing").value,
     meal: document.getElementById("meal-timing").value,
-    duration: parseInt(document.getElementById("med-duration").value),
+    duration: document.getElementById("med-duration").value,
     startDate: document.getElementById("med-start-date").value,
     added: new Date().toISOString()
   };
 
-  const editIndex = document.getElementById("edit-index").value;
-  if (editIndex !== "") {
-    meds[parseInt(editIndex)] = med;
-    document.getElementById("edit-index").value = "";
-  } else {
-    meds.push(med);
-  }
-
+  meds.push(med);
   localStorage.setItem("chewie_meds", JSON.stringify(meds));
   form.reset();
   renderLogs();
+  formSection.classList.add("hidden");
 });
 
 function renderLogs() {
   logContainer.innerHTML = "";
   const grouped = {};
 
-  meds.forEach((med, index) => {
+  meds.forEach((med) => {
     const start = new Date(med.startDate);
-    for (let d = 0; d < med.duration; d++) {
+    for (let i = 0; i < med.duration; i++) {
       const date = new Date(start);
-      date.setDate(start.getDate() + d);
-      const dateKey = date.toISOString().split("T")[0];
-
-      if (!grouped[dateKey]) grouped[dateKey] = [];
-      grouped[dateKey].push({ ...med, index });
+      date.setDate(start.getDate() + i);
+      const key = date.toISOString().split("T")[0];
+      if (!grouped[key]) grouped[key] = [];
+      grouped[key].push(med);
     }
   });
 
-  Object.keys(grouped).sort().forEach(day => {
+  Object.keys(grouped).sort().forEach((date) => {
     const card = document.createElement("div");
-    card.className = "daily-card";
+    card.className = "card";
+    card.innerHTML = `<h3>${date}</h3>`;
 
-    const dateLabel = document.createElement("h3");
-    dateLabel.textContent = day;
-    card.appendChild(dateLabel);
-
-    grouped[day].forEach(med => {
-      const block = document.createElement("div");
-      block.className = "med-block";
-      block.innerHTML = `
-        <strong>${med.name}</strong><br>
-        ${med.dosage} — ${med.frequency}x/day<br>
-        ${med.timing}, ${med.meal} meal
-        <br><button class="edit-btn" onclick="editMedicine(${med.index})">Edit</button>
-      `;
-      card.appendChild(block);
+    grouped[date].forEach((med) => {
+      const item = document.createElement("p");
+      item.innerHTML = `<strong>${med.name}</strong> - ${med.dosage} - ${med.frequency}x/day - ${med.timing}, ${med.meal} meal`;
+      card.appendChild(item);
     });
 
     logContainer.appendChild(card);
   });
 }
 
-function editMedicine(index) {
-  const med = meds[index];
-  document.getElementById("edit-index").value = index;
-  document.getElementById("med-name").value = med.name;
-  document.getElementById("med-dosage").value = med.dosage;
-  document.getElementById("med-frequency").value = med.frequency;
-  document.getElementById("med-timing").value = med.timing;
-  document.getElementById("meal-timing").value = med.meal;
-  document.getElementById("med-duration").value = med.duration;
-  document.getElementById("med-start-date").value = med.startDate;
+function openForm() {
+  formSection.classList.remove("hidden");
 }
 
-renderLogs();
+function switchTab(tab) {
+  if (tab === "home") {
+    document.querySelector("#form-section").classList.add("hidden");
+    document.querySelector("#main-content").scrollTop = 0;
+    document.querySelector(".bottom-nav .nav-btn:nth-child(1)").classList.add("active");
+    document.querySelector(".bottom-nav .nav-btn:nth-child(2)").classList.remove("active");
+  } else {
+    renderLogs();
+    document.querySelector(".bottom-nav .nav-btn:nth-child(2)").classList.add("active");
+    document.querySelector(".bottom-nav .nav-btn:nth-child(1)").classList.remove("active");
+  }
+}

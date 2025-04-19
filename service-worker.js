@@ -1,22 +1,23 @@
-self.addEventListener('install', function (e) {
-    e.waitUntil(
-      caches.open('chewie-tracker').then(function (cache) {
-        return cache.addAll([
-          '/',
-          '/index.html',
-          '/style.css',
-          '/script.js',
-          '/manifest.json'
-        ]);
-      })
-    );
-  });
-  
-  self.addEventListener('fetch', function (e) {
-    e.respondWith(
-      caches.match(e.request).then(function (response) {
-        return response || fetch(e.request);
-      })
-    );
-  });
-  
+self.addEventListener("install", e => {
+  e.waitUntil(
+    caches.open("chewie-v3").then(cache => {
+      return cache.addAll([
+        "/",
+        "/index.html",
+        "/style.css",
+        "/script.js",
+        "/manifest.json",
+        "/icon-192.png",
+        "/icon-512.png"
+      ]);
+    })
+  );
+});
+
+self.addEventListener("fetch", e => {
+  e.respondWith(
+    caches.match(e.request).then(response => {
+      return response || fetch(e.request);
+    })
+  );
+});

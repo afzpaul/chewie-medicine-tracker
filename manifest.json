@@ -3,8 +3,8 @@
   "short_name": "ChewieTracker",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#fef6ff",
-  "theme_color": "#8652f5",
+  "theme_color": "#ffffff",
+  "background_color": "#f9f9ff",
   "icons": [
     {
       "src": "icon-192.png",
