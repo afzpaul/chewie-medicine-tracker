@@ -3,9 +3,9 @@ let meds = JSON.parse(localStorage.getItem("chewie_meds")) || [];
 function updateGreeting() {
   const hour = new Date().getHours();
   const greeting = document.getElementById("greeting");
-  if (hour >= 5 && hour < 12) greeting.textContent = "Good Morning, Chewie!";
-  else if (hour >= 12 && hour < 18) greeting.textContent = "Good Afternoon, Chewie!";
-  else greeting.textContent = "Good Night, Chewie!";
+  if (hour >= 5 && hour < 12) greeting.textContent = "Good Morning";
+  else if (hour >= 12 && hour < 18) greeting.textContent = "Good Afternoon";
+  else greeting.textContent = "Good Evening";
 }
 updateGreeting();
 
