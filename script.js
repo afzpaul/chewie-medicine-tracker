@@ -42,52 +42,31 @@ function renderLogs() {
       const dateKey = date.toISOString().split("T")[0];
 
       if (!grouped[dateKey]) grouped[dateKey] = [];
-
-      grouped[dateKey].push({ ...med, day: dateKey, index });
+      grouped[dateKey].push({ ...med, index });
     }
   });
 
   Object.keys(grouped).sort().forEach(day => {
-    const daySection = document.createElement("div");
-    daySection.className = "log-entry";
+    const card = document.createElement("div");
+    card.className = "daily-card";
 
-    const title = document.createElement("h3");
-    title.textContent = `Date: ${day}`;
-    daySection.appendChild(title);
-
-    const morningList = document.createElement("ul");
-    const nightList = document.createElement("ul");
+    const dateLabel = document.createElement("h3");
+    dateLabel.textContent = day;
+    card.appendChild(dateLabel);
 
     grouped[day].forEach(med => {
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <strong>${med.name}</strong> (${med.dosage})<br>
-        ${med.frequency}x/day - ${med.meal} meal (${med.timing})
-        <button class="edit-btn" onclick="editMedicine(${med.index})">Edit</button>
+      const block = document.createElement("div");
+      block.className = "med-block";
+      block.innerHTML = `
+        <strong>${med.name}</strong><br>
+        ${med.dosage} — ${med.frequency}x/day<br>
+        ${med.timing}, ${med.meal} meal
+        <br><button class="edit-btn" onclick="editMedicine(${med.index})">Edit</button>
       `;
-      if (med.timing === "morning" || med.timing === "both") {
-        morningList.appendChild(li.cloneNode(true));
-      }
-      if (med.timing === "night" || med.timing === "both") {
-        nightList.appendChild(li);
-      }
+      card.appendChild(block);
     });
 
-    if (morningList.children.length > 0) {
-      const morningLabel = document.createElement("strong");
-      morningLabel.textContent = "Morning:";
-      daySection.appendChild(morningLabel);
-      daySection.appendChild(morningList);
-    }
-
-    if (nightList.children.length > 0) {
-      const nightLabel = document.createElement("strong");
-      nightLabel.textContent = "Night:";
-      daySection.appendChild(nightLabel);
-      daySection.appendChild(nightList);
-    }
-
-    logContainer.appendChild(daySection);
+    logContainer.appendChild(card);
   });
 }
 
