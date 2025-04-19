@@ -18,6 +18,7 @@
     <section class="medicine-setup">
       <h2>New Medicine</h2>
       <form id="medicine-form">
+        <input type="hidden" id="edit-index" />
         <input type="text" id="med-name" placeholder="Medicine Name" required />
         <input type="text" id="med-dosage" placeholder="Dosage (e.g. 5ml)" required />
         <input type="number" id="med-frequency" placeholder="Times per Day (e.g. 2)" min="1" required />
@@ -32,12 +33,12 @@
         </select>
         <input type="number" id="med-duration" placeholder="Duration in Days (e.g. 7)" min="1" required />
         <input type="date" id="med-start-date" required />
-        <button type="submit">Add Medicine</button>
+        <button type="submit">Save Medicine</button>
       </form>
     </section>
 
     <section class="daily-log">
-      <h2>Daily Medicine Log</h2>
+      <h2>Daily Summary</h2>
       <div id="log-container"></div>
     </section>
 
