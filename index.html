@@ -7,29 +7,51 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="homepage-container">
-    <h1 id="greeting">Good Day!</h1>
-    <p class="welcome-text">Let’s take care of Chewie together 💊🐾</p>
-
+  <div class="tab active" id="home">
+    <h1 id="greeting">Loading...</h1>
+    <p class="welcome-text">Let’s take care of you 💊🐾</p>
     <div class="character-card">
       <div class="character-face">🐶</div>
-      <p>Hello! Ready to track?</p>
+      <p>Ready to start tracking?</p>
     </div>
-
-    <button class="start-btn" onclick="location.href='tracking.html'">Let’s Start</button>
+    <button class="start-btn" onclick="switchTab('tracker')">Let’s Start</button>
   </div>
 
-  <script>
-    const greetingEl = document.getElementById("greeting");
-    const now = new Date().getHours();
+  <div class="tab hidden" id="tracker">
+    <h2>🩺 Chewie’s Tracker</h2>
+    <form id="medicine-form">
+      <input type="hidden" id="edit-index" />
+      <input type="text" id="med-name" placeholder="Medicine Name" required />
+      <input type="text" id="med-dosage" placeholder="Dosage" required />
+      <input type="number" id="med-frequency" placeholder="Times per Day" required />
+      <select id="med-timing">
+        <option value="morning">Morning</option>
+        <option value="night">Night</option>
+        <option value="both">Both</option>
+      </select>
+      <select id="meal-timing">
+        <option value="before">Before Meal</option>
+        <option value="after">After Meal</option>
+      </select>
+      <input type="number" id="med-duration" placeholder="Duration (days)" required />
+      <input type="date" id="med-start-date" required />
+      <button type="submit">Save Medicine</button>
+    </form>
+    <div id="log-container"></div>
+  </div>
 
-    if (now >= 5 && now < 12) {
-      greetingEl.textContent = "Good Morning!";
-    } else if (now >= 12 && now < 18) {
-      greetingEl.textContent = "Good Afternoon!";
-    } else {
-      greetingEl.textContent = "Good Evening!";
-    }
-  </script>
+  <div class="tab hidden" id="profile">
+    <h2>🐾 Profile</h2>
+    <p>Total Medicines: <span id="total-meds">0</span></p>
+    <p>Finished: <span id="finished-meds">0</span></p>
+  </div>
+
+  <nav class="nav-bar">
+    <button onclick="switchTab('home')">🏠</button>
+    <button onclick="switchTab('tracker')">📋</button>
+    <button onclick="switchTab('profile')">👤</button>
+  </nav>
+
+  <script src="script.js"></script>
 </body>
 </html>
