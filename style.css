@@ -1,25 +1,35 @@
-/* style.css */
 body {
   margin: 0;
   font-family: 'Sora', sans-serif;
   background: #F9F2ED;
   color: #313131;
 }
+
 .screen {
   display: none;
   padding: 1.5rem;
+  animation: fadeIn 0.3s ease;
 }
+
 .screen.active {
   display: block;
 }
+
+#welcome, #home, #track, #profile {
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
 .welcome-bg {
   text-align: center;
   padding: 5rem 2rem;
 }
-.welcome-bg h1 {
+
+#welcome h1 {
   font-size: 1.8rem;
   color: #C67C4E;
 }
+
 button {
   background: #C67C4E;
   color: white;
@@ -29,6 +39,7 @@ button {
   font-size: 1rem;
   cursor: pointer;
 }
+
 input {
   width: 100%;
   padding: 1rem;
@@ -36,11 +47,13 @@ input {
   border: 1px solid #E3E3E3;
   border-radius: 8px;
 }
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .nav-bar {
   position: fixed;
   bottom: 0;
@@ -51,13 +64,45 @@ header {
   border-top: 1px solid #E3E3E3;
   padding: 0.75rem 0;
 }
+
 #log-container {
   margin-top: 1rem;
 }
+
 .log-card {
   background: #fff;
   border: 1px solid #E3E3E3;
   border-radius: 12px;
   padding: 1rem;
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.log-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  background: #EDD6C8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Sora', sans-serif;
+  z-index: 999;
+}
+
+.version-label {
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  color: #999;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }

@@ -1,4 +1,4 @@
-const cacheName = "chewie-cache-v1.5";
+const cacheName = "chewie-cache-v1.6";
 const filesToCache = [
   "./",
   "./index.html",

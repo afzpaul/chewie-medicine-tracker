@@ -1,19 +1,23 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chewie Medicine Tracker</title>
+  <title>Chewie Tracker v1.6</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="manifest.json" />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <section class="screen active" id="welcome">
+  <div id="splash-screen">
+    <h1>🐾 Chewie Tracker</h1>
+    <p>Loading...</p>
+  </div>
+
+  <section class="screen" id="welcome">
     <div class="welcome-bg">
-      <h1>Track Your Pup’s Wellness</h1>
-      <p>Organized. Reliable. Tailored for Chewie 🐶</p>
+      <h1>Track Chewie’s Wellness</h1>
+      <p>Tailored tracker just for your furry friend</p>
       <button onclick="switchScreen('home')">Get Started</button>
     </div>
   </section>
@@ -28,10 +32,11 @@
 
   <section class="screen" id="track">
     <header>
-      <h2>Add Medicine</h2>
+      <h2>Add/Edit Medicine</h2>
       <button onclick="switchScreen('home')">← Back</button>
     </header>
     <form id="medicine-form">
+      <input type="hidden" id="edit-index" />
       <input type="text" id="med-name" placeholder="Medicine Name" required />
       <input type="text" id="med-dosage" placeholder="Dosage (e.g. 5ml)" required />
       <input type="date" id="med-date" required />
@@ -40,10 +45,23 @@
     </form>
   </section>
 
+  <section class="screen" id="profile">
+    <header>
+      <h2>Profile</h2>
+      <button onclick="switchScreen('home')">← Back</button>
+    </header>
+    <div class="profile-box">
+      <p>Total Meds: <strong id="total-meds">0</strong></p>
+      <p>Finished: <strong id="finished-meds">0</strong></p>
+      <p class="version-label">Chewie Tracker v1.6</p>
+    </div>
+  </section>
+
   <nav class="nav-bar">
     <button onclick="switchScreen('welcome')">🏠</button>
     <button onclick="switchScreen('home')">📋</button>
     <button onclick="switchScreen('track')">➕</button>
+    <button onclick="switchScreen('profile')">👤</button>
   </nav>
 
   <script src="script.js"></script>
@@ -51,6 +69,9 @@
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js');
     }
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('splash-screen').style.display = 'none', 1000);
+    });
   </script>
 </body>
 </html>
