@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chewie Tracker v1.6</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chewie Tracker v1.7</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="manifest.json" />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="icon-192.png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" defer></script>
 </head>
 <body>
   <div id="splash-screen">
@@ -14,90 +15,63 @@
     <p>Loading...</p>
   </div>
 
-  <section class="screen" id="welcome">
-    <div class="welcome-bg">
-      <h1>Track Chewie’s Wellness</h1>
-      <p>Tailored tracker just for your furry friend</p>
-      <button onclick="switchScreen('home')">Get Started</button>
-    </div>
-  </section>
+  <header><h2 id="greeting">Hello, Chewie!</h2></header>
 
-  <section class="screen" id="home">
-    <header>
-      <h2>Today's Meds</h2>
-      <button onclick="switchScreen('track')">+ Add</button>
-    </header>
+  <main class="screen active" id="home">
     <div id="log-container"></div>
-  </section>
+  </main>
 
-  <section class="screen" id="track">
-    <header>
-      <h2>Add/Edit Medicine</h2>
-      <button onclick="switchScreen('home')">← Back</button>
-    </header>
+  <main class="screen" id="track">
     <form id="medicine-form">
       <input type="hidden" id="edit-index" />
       <input type="text" id="med-name" placeholder="Medicine Name" required />
       <input type="text" id="med-dosage" placeholder="Dosage (e.g. 5ml)" required />
+      <input type="number" id="med-frequency" placeholder="Times per Day" required />
+      <select id="meal-timing" required>
+        <option value="">Before/After Meal</option>
+        <option value="before">Before Meal</option>
+        <option value="after">After Meal</option>
+      </select>
+      <select id="intake-time" required>
+        <option value="">Intake Time</option>
+        <option value="morning">Morning</option>
+        <option value="night">Night</option>
+        <option value="both">Both</option>
+      </select>
+      <input type="number" id="med-duration" placeholder="Duration in Days" required />
       <input type="date" id="med-date" required />
       <input type="time" id="med-time" required />
       <button type="submit">Save</button>
     </form>
-  </section>
+  </main>
 
-  <form id="medicine-form">
-    <input type="hidden" id="edit-index" />
-    <input type="text" id="med-name" placeholder="Medicine Name" required />
-    <input type="text" id="med-dosage" placeholder="Dosage (e.g. 5ml)" required />
-    <input type="number" id="med-frequency" placeholder="Times per Day (e.g. 2)" required />
-    
-    <select id="meal-timing" required>
-      <option value="">Before/After Meal</option>
-      <option value="before">Before Meal</option>
-      <option value="after">After Meal</option>
-    </select>
-  
-    <select id="intake-time" required>
-      <option value="">Intake Time</option>
-      <option value="morning">Morning</option>
-      <option value="night">Night</option>
-      <option value="both">Both</option>
-    </select>
-  
-    <input type="number" id="med-duration" placeholder="Duration in Days (e.g. 7)" required />
-    <input type="date" id="med-date" required />
-    <input type="time" id="med-time" required />
-  
-    <button type="submit">Save</button>
-  </form>
-  
-  <section class="screen" id="profile">
-    <header>
-      <h2>Profile</h2>
-      <button onclick="switchScreen('home')">← Back</button>
-    </header>
+  <main class="screen" id="profile">
     <div class="profile-box">
       <p>Total Meds: <strong id="total-meds">0</strong></p>
       <p>Finished: <strong id="finished-meds">0</strong></p>
-      <p class="version-label">Chewie Tracker v1.6</p>
+      <p class="version-label">Chewie Tracker v1.7</p>
     </div>
-  </section>
+  </main>
 
-  <nav class="nav-bar">
-    <button onclick="switchScreen('welcome')">🏠</button>
-    <button onclick="switchScreen('home')">📋</button>
-    <button onclick="switchScreen('track')">➕</button>
-    <button onclick="switchScreen('profile')">👤</button>
-  </nav>
+  <footer>
+    <button class="nav-btn active" onclick="switchScreen('home', this)"><i class="fas fa-home"></i></button>
+    <button class="nav-btn" onclick="switchScreen('track', this)"><i class="fas fa-plus-circle"></i></button>
+    <button class="nav-btn" onclick="switchScreen('profile', this)"><i class="fas fa-user"></i></button>
+  </footer>
 
   <script src="script.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js');
     }
-    window.addEventListener('load', () => {
-      setTimeout(() => document.getElementById('splash-screen').style.display = 'none', 1000);
+
+    window.addEventListener("load", () => {
+      setTimeout(() => document.getElementById("splash-screen").style.display = "none", 1000);
     });
+
+    const hour = new Date().getHours();
+    const greeting = hour < 12 ? "Good Morning" : hour < 18 ? "Good Afternoon" : "Good Evening";
+    document.getElementById("greeting").textContent = greeting + ", Chewie!";
   </script>
 </body>
 </html>

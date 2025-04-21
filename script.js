@@ -1,14 +1,19 @@
 let meds = JSON.parse(localStorage.getItem("chewie_meds") || "[]");
 
-function switchScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+function switchScreen(id, btn) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+
   if (id === "home") renderLogs();
   if (id === "profile") updateProfile();
 }
 
 document.getElementById("medicine-form").addEventListener("submit", function (e) {
   e.preventDefault();
+
   const med = {
     name: document.getElementById("med-name").value,
     dosage: document.getElementById("med-dosage").value,
@@ -31,7 +36,7 @@ document.getElementById("medicine-form").addEventListener("submit", function (e)
 
   localStorage.setItem("chewie_meds", JSON.stringify(meds));
   this.reset();
-  switchScreen("home");
+  switchScreen("home", document.querySelector('[onclick*="home"]'));
 });
 
 function renderLogs() {
@@ -41,11 +46,13 @@ function renderLogs() {
   const grouped = {};
   meds.forEach((med, index) => {
     if (!grouped[med.date]) grouped[med.date] = { morning: [], night: [] };
-    if (med.intakeTime === "morning") grouped[med.date].morning.push({ ...med, index });
-    else if (med.intakeTime === "night") grouped[med.date].night.push({ ...med, index });
+    const entry = { ...med, index };
+
+    if (med.intakeTime === "morning") grouped[med.date].morning.push(entry);
+    else if (med.intakeTime === "night") grouped[med.date].night.push(entry);
     else {
-      grouped[med.date].morning.push({ ...med, index });
-      grouped[med.date].night.push({ ...med, index });
+      grouped[med.date].morning.push(entry);
+      grouped[med.date].night.push(entry);
     }
   });
 
@@ -61,11 +68,10 @@ function renderLogs() {
           section.innerHTML += `
             ✅ ${med.time} – ${med.name} – ${med.dosage} – ${med.frequency}x/day – ${med.meal} meal (${med.duration}d)<br>
             <div class="log-actions">
-              <button onclick="editMed(${med.index})">✏️</button>
-              <button onclick="deleteMed(${med.index})">🗑️</button>
-              <button onclick="toggleFinish(${med.index})">${med.finished ? "↩️ Undo" : "✅ Done"}</button>
-            </div>
-            <br>
+              <button onclick="editMed(${med.index})"><i class="fas fa-pen"></i></button>
+              <button onclick="deleteMed(${med.index})"><i class="fas fa-trash"></i></button>
+              <button onclick="toggleFinish(${med.index})"><i class="fas fa-check-circle"></i></button>
+            </div><br>
           `;
         });
       }
@@ -86,7 +92,7 @@ function editMed(index) {
   document.getElementById("med-date").value = m.date;
   document.getElementById("med-time").value = m.time;
   document.getElementById("edit-index").value = index;
-  switchScreen("track");
+  switchScreen("track", document.querySelector('[onclick*="track"]'));
 }
 
 function deleteMed(index) {

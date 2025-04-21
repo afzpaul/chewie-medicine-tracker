@@ -1,108 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora&display=swap');
+
+:root {
+  --main-bg: #F9F2ED;
+  --card-bg: #FFFFFF;
+  --primary: #C67C4E;
+  --text-main: #313131;
+  --muted: #888;
+  --light-gray: #E3E3E3;
+}
+
 body {
   margin: 0;
   font-family: 'Sora', sans-serif;
-  background: #F9F2ED;
-  color: #313131;
+  background: var(--main-bg);
+  color: var(--text-main);
+  padding: 1rem;
+}
+
+header h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+input, select, textarea, button {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--light-gray);
+  font-size: 1rem;
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #a45c35;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--primary);
+}
+
+.nav-btn.active {
+  color: var(--text-main);
 }
 
 .screen {
   display: none;
-  padding: 1.5rem;
-  animation: fadeIn 0.3s ease;
+  margin-bottom: 4rem;
 }
 
 .screen.active {
   display: block;
 }
 
-#welcome, #home, #track, #profile {
-  min-height: 100vh;
-  box-sizing: border-box;
-}
-
-.welcome-bg {
-  text-align: center;
-  padding: 5rem 2rem;
-}
-
-#welcome h1 {
-  font-size: 1.8rem;
-  color: #C67C4E;
-}
-
-button {
-  background: #C67C4E;
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-input {
-  width: 100%;
-  padding: 1rem;
-  margin: 0.5rem 0;
-  border: 1px solid #E3E3E3;
-  border-radius: 8px;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-bar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #fff;
-  display: flex;
-  justify-content: space-around;
-  border-top: 1px solid #E3E3E3;
-  padding: 0.75rem 0;
-}
-
-#log-container {
-  margin-top: 1rem;
-}
-
 .log-card {
   background: #fff;
-  border: 1px solid #E3E3E3;
   border-radius: 12px;
   padding: 1rem;
-  margin-bottom: 1rem;
-  position: relative;
+  margin: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .log-actions {
-  margin-top: 10px;
+  margin-top: 0.5rem;
   display: flex;
-  gap: 10px;
+  justify-content: end;
+  gap: 0.5rem;
+}
+
+.log-actions button {
+  background: #E3E3E3;
+  color: #313131;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
 }
 
 #splash-screen {
   position: fixed;
   inset: 0;
-  background: #EDD6C8;
+  background: var(--light-gray);
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  font-size: 1.2rem;
   font-family: 'Sora', sans-serif;
-  z-index: 999;
+  z-index: 9999;
 }
 
 .version-label {
   font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
   margin-top: 1rem;
-  color: #999;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
 }
