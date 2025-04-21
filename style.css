@@ -1,108 +1,63 @@
-:root {
-  --bg: #f9f9f9;
-  --primary: #c57b57;
-  --text: #222;
-  --card: #fff;
-  --radius: 14px;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
+/* style.css */
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  font-family: 'Sora', sans-serif;
+  background: #F9F2ED;
+  color: #313131;
 }
-
 .screen {
   display: none;
-  padding: 20px;
+  padding: 1.5rem;
 }
-
 .screen.active {
   display: block;
-  animation: fadeIn 0.3s ease;
 }
-
 .welcome-bg {
   text-align: center;
-  padding-top: 60px;
-  padding-bottom: 100px;
+  padding: 5rem 2rem;
 }
-
 .welcome-bg h1 {
-  font-size: 1.8em;
-  margin-bottom: 10px;
+  font-size: 1.8rem;
+  color: #C67C4E;
 }
-
 button {
-  padding: 12px 20px;
-  background: var(--primary);
+  background: #C67C4E;
   color: white;
   border: none;
-  border-radius: var(--radius);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
   cursor: pointer;
-  font-size: 1em;
 }
-
+input {
+  width: 100%;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border: 1px solid #E3E3E3;
+  border-radius: 8px;
+}
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-form input, form button {
-  display: block;
-  width: 100%;
-  margin: 8px 0;
-  padding: 10px;
-  font-size: 1em;
-  border: 1px solid #ddd;
-  border-radius: var(--radius);
-  box-sizing: border-box;
-}
-
-#log-container {
-  margin-top: 20px;
-}
-
-.log-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 15px;
-  margin-bottom: 12px;
-  box-shadow: var(--shadow);
-}
-
-.log-card h4 {
-  margin: 0 0 8px;
-  font-size: 1.1em;
-}
-
-.log-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
 .nav-bar {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: white;
+  background: #fff;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #E3E3E3;
+  padding: 0.75rem 0;
 }
-
-.nav-bar button {
-  background: none;
-  border: none;
-  font-size: 1.4em;
+#log-container {
+  margin-top: 1rem;
 }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.log-card {
+  background: #fff;
+  border: 1px solid #E3E3E3;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
 }

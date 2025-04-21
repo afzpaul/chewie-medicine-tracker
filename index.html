@@ -1,56 +1,49 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chewie Medicine Tracker v1.5</title>
+  <title>Chewie Medicine Tracker</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="manifest.json" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Welcome Screen -->
   <section class="screen active" id="welcome">
     <div class="welcome-bg">
-      <h1>Fall in Love with Healthy Chewie 🐾</h1>
-      <p>Track every dose and keep your buddy safe</p>
-      <button onclick="switchScreen('tracker')">Get Started</button>
+      <h1>Track Your Pup’s Wellness</h1>
+      <p>Organized. Reliable. Tailored for Chewie 🐶</p>
+      <button onclick="switchScreen('home')">Get Started</button>
     </div>
   </section>
 
-  <!-- Tracker Screen -->
-  <section class="screen" id="tracker">
+  <section class="screen" id="home">
     <header>
-      <h2>💊 Medicine List</h2>
-      <button onclick="switchScreen('profile')" class="profile-btn">👤</button>
+      <h2>Today's Meds</h2>
+      <button onclick="switchScreen('track')">+ Add</button>
     </header>
-    <form id="medicine-form">
-      <input type="hidden" id="edit-index" />
-      <input type="text" id="med-name" placeholder="Name of Medicine" required />
-      <input type="text" id="med-dosage" placeholder="Dosage (e.g. 5ml)" required />
-      <input type="date" id="med-date" required />
-      <input type="time" id="med-time" required />
-      <button type="submit">+ Add Medicine</button>
-    </form>
     <div id="log-container"></div>
   </section>
 
-  <!-- Profile Screen -->
-  <section class="screen" id="profile">
+  <section class="screen" id="track">
     <header>
-      <h2>Chewie’s Profile</h2>
-      <button onclick="switchScreen('tracker')" class="profile-btn">← Back</button>
+      <h2>Add Medicine</h2>
+      <button onclick="switchScreen('home')">← Back</button>
     </header>
-    <div class="profile-box">
-      <p>Total Tracked: <strong id="total-meds">0</strong></p>
-      <p>Completed: <strong id="finished-meds">0</strong></p>
-    </div>
+    <form id="medicine-form">
+      <input type="text" id="med-name" placeholder="Medicine Name" required />
+      <input type="text" id="med-dosage" placeholder="Dosage (e.g. 5ml)" required />
+      <input type="date" id="med-date" required />
+      <input type="time" id="med-time" required />
+      <button type="submit">Save</button>
+    </form>
   </section>
 
-  <!-- Navigation -->
   <nav class="nav-bar">
     <button onclick="switchScreen('welcome')">🏠</button>
-    <button onclick="switchScreen('tracker')">📋</button>
-    <button onclick="switchScreen('profile')">👤</button>
+    <button onclick="switchScreen('home')">📋</button>
+    <button onclick="switchScreen('track')">➕</button>
   </nav>
 
   <script src="script.js"></script>
@@ -59,6 +52,5 @@
       navigator.serviceWorker.register('service-worker.js');
     }
   </script>
-  
 </body>
 </html>
