@@ -3,53 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chewie Medicine Tracker v1</title>
+  <title>Chewie Medicine Tracker v1.5</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
 </head>
 <body>
-  <div class="tab active" id="home">
-    <h1 id="greeting">Loading...</h1>
-    <p class="welcome-text">Let’s take care of you 💊🐾</p>
-    <div class="character-card">
-      <div class="character-face">🐶</div>
-      <p>Ready to start tracking?</p>
+  <!-- Welcome Screen -->
+  <section class="screen active" id="welcome">
+    <div class="welcome-bg">
+      <h1>Fall in Love with Healthy Chewie 🐾</h1>
+      <p>Track every dose and keep your buddy safe</p>
+      <button onclick="switchScreen('tracker')">Get Started</button>
     </div>
-    <button class="start-btn" onclick="switchTab('tracker')">Let’s Start</button>
-  </div>
+  </section>
 
-  <div class="tab hidden" id="tracker">
-    <h2>🩺 Chewie’s Tracker</h2>
+  <!-- Tracker Screen -->
+  <section class="screen" id="tracker">
+    <header>
+      <h2>💊 Medicine List</h2>
+      <button onclick="switchScreen('profile')" class="profile-btn">👤</button>
+    </header>
     <form id="medicine-form">
       <input type="hidden" id="edit-index" />
-      <input type="text" id="med-name" placeholder="Medicine Name" required />
-      <input type="text" id="med-dosage" placeholder="Dosage" required />
-      <input type="number" id="med-frequency" placeholder="Times per Day" required />
-      <select id="med-timing">
-        <option value="morning">Morning</option>
-        <option value="night">Night</option>
-        <option value="both">Both</option>
-      </select>
-      <select id="meal-timing">
-        <option value="before">Before Meal</option>
-        <option value="after">After Meal</option>
-      </select>
-      <input type="number" id="med-duration" placeholder="Duration (days)" required />
-      <input type="date" id="med-start-date" required />
-      <button type="submit">Save Medicine</button>
+      <input type="text" id="med-name" placeholder="Name of Medicine" required />
+      <input type="text" id="med-dosage" placeholder="Dosage (e.g. 5ml)" required />
+      <input type="date" id="med-date" required />
+      <input type="time" id="med-time" required />
+      <button type="submit">+ Add Medicine</button>
     </form>
     <div id="log-container"></div>
-  </div>
+  </section>
 
-  <div class="tab hidden" id="profile">
-    <h2>🐾 Profile</h2>
-    <p>Total Medicines: <span id="total-meds">0</span></p>
-    <p>Finished: <span id="finished-meds">0</span></p>
-  </div>
+  <!-- Profile Screen -->
+  <section class="screen" id="profile">
+    <header>
+      <h2>Chewie’s Profile</h2>
+      <button onclick="switchScreen('tracker')" class="profile-btn">← Back</button>
+    </header>
+    <div class="profile-box">
+      <p>Total Tracked: <strong id="total-meds">0</strong></p>
+      <p>Completed: <strong id="finished-meds">0</strong></p>
+    </div>
+  </section>
 
+  <!-- Navigation -->
   <nav class="nav-bar">
-    <button onclick="switchTab('home')">🏠</button>
-    <button onclick="switchTab('tracker')">📋</button>
-    <button onclick="switchTab('profile')">👤</button>
+    <button onclick="switchScreen('welcome')">🏠</button>
+    <button onclick="switchScreen('tracker')">📋</button>
+    <button onclick="switchScreen('profile')">👤</button>
   </nav>
 
   <script src="script.js"></script>
