@@ -45,6 +45,32 @@
     </form>
   </section>
 
+  <form id="medicine-form">
+    <input type="hidden" id="edit-index" />
+    <input type="text" id="med-name" placeholder="Medicine Name" required />
+    <input type="text" id="med-dosage" placeholder="Dosage (e.g. 5ml)" required />
+    <input type="number" id="med-frequency" placeholder="Times per Day (e.g. 2)" required />
+    
+    <select id="meal-timing" required>
+      <option value="">Before/After Meal</option>
+      <option value="before">Before Meal</option>
+      <option value="after">After Meal</option>
+    </select>
+  
+    <select id="intake-time" required>
+      <option value="">Intake Time</option>
+      <option value="morning">Morning</option>
+      <option value="night">Night</option>
+      <option value="both">Both</option>
+    </select>
+  
+    <input type="number" id="med-duration" placeholder="Duration in Days (e.g. 7)" required />
+    <input type="date" id="med-date" required />
+    <input type="time" id="med-time" required />
+  
+    <button type="submit">Save</button>
+  </form>
+  
   <section class="screen" id="profile">
     <header>
       <h2>Profile</h2>
