@@ -4,7 +4,7 @@ const urlsToCache = [
   "/index.html",
   "/style.css",
   "/script.js",
-  "/dog.png", // make sure this matches your image path
+  "/samoyed.png", // make sure this matches your image path
 ];
 
 // Install event
